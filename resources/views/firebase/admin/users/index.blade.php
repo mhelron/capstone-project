@@ -54,8 +54,8 @@
                           <td>{{$item['lname']}}</td>
                           <td>{{$item['email']}}</td>
                           <td>{{$item['user_role']}}</td>
-                          <td><a href="" class="btn btn-sm btn-success">Edit</a></td>
-                          <td><a href="" class="btn btn-sm btn-danger">Delete</a></td>
+                          <td><a href="{{url('admin/users/edit-user/' .$key)}}" class="btn btn-sm btn-success">Edit</a></td>
+                          <td><a href="{{url('admin/users/delete-user/'.$key)}}" class="btn btn-sm btn-danger">Delete</a></td>
                         </tr>
                       @empty
                       <tr>

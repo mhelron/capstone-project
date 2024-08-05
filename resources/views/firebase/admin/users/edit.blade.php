@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Add User</h1>
+            <h1 class="m-0">Edit User</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Add User</li>
+              <li class="breadcrumb-item active">Edit User</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -30,41 +30,32 @@
             </div>
             <div class="card">
               <div class="card-body">
-                <form action="{{ route('admin.users.store') }}" method="POST">
+                <form action="{{ url('admin/users/update-user/'.$key) }}" method="POST">
                     @csrf
+                    @method('PUT')
                         <div class="form-group mb-3">
                             <label>First Name</label>
-                            <input type="text" name="first_name" class="form-control">
+                            <input type="text" name="first_name" value="{{$editdata['fname']}}" class="form-control">
                         </div>
 
                         <div class="form-group mb-3">
                             <label>Last Name</label>
-                            <input type="text" name="last_name" class="form-control">
+                            <input type="text" name="last_name" value="{{$editdata['lname']}}" class="form-control">
                         </div>
 
                         <div class="form-group mb-3">
                             <label>E-mail</label>
-                            <input type="text" name="email" class="form-control">
+                            <input type="text" name="email" value="{{$editdata['email']}}" class="form-control">
                         </div>
 
                         <div class="form-group mb-3">
                             <label>User Role</label>
-                            <select name="user_role" id="user_role" class="form-control">
+                            <select name="user_role" id="user_role" value="{{$editdata['user_role']}}" class="form-control">
                                 <option value="Admin">Admin</option>
                                 <option value="Owner">Owner</option>
                                 <option value="BookKeeper">Book Keeper</option> 
                                 <option value="Accounting">Accounting</option>
                             </select>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label>Password</label>
-                            <input type="password" name="password" class="form-control">
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label>Confirm Password</label>
-                            <input type="password" name="password_confirmation" class="form-control">
                         </div>
 
                         <div class="form-group mb-3">
