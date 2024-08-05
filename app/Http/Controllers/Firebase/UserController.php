@@ -15,7 +15,8 @@ class UserController extends Controller
     }
 
     public function index(){
-        $users = $this->database->getReference($this->tablename)->getValue() ?? [];
+        $users = $this->database->getReference('users')->getValue();
+        $users = is_array($users) ? $users : [];
         return view('firebase.admin.users.index', compact('users'));
     }
 
