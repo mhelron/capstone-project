@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Users</h1>
+            <h1 class="m-0">Food</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Users</li>
+              <li class="breadcrumb-item active">Food</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -28,9 +28,19 @@
             @if(session('status'))
               <h4 class="alert alert-warning mb-2">{{session('status')}}</h4>
             @endif
-            <div class="d-flex justify-content-end mb-2">
-                <a href="{{route('admin.users.add')}}" class="btn btn-primary"> Add User</a>
-            </div>
+
+                <!-- Search Form -->
+                <div class="d-flex justify-content-between mb-2">
+                    <form action="{{ route('admin.food') }}" method="GET" class="form-inline">
+                        <div class="form-group mb-2">
+                            <input type="text" name="search" class="form-control" placeholder="Search by dish name" value="{{ request('search') }}">
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2 ml-2">Search</button>
+                        <a href="{{ route('admin.food') }}" class="btn btn-secondary mb-2 ml-2">Clear Search</a>
+                    </form>
+                    <a href="{{ route('admin.food.add') }}" class="btn btn-primary mb-2">Add Food</a>
+                </div>
+
             <div class="card">
               <div class="card-body">
                 <div class="table-responsive">
@@ -38,34 +48,37 @@
                       <thead>
                           <tr>
                           <th scope="col">#</th>
-                          <th scope="col">First</th>
-                          <th scope="col">Last</th>
-                          <th scope="col">Email</th>
-                          <th scope="col">Role</th>
+                          <th scope="col">Dish Name</th>
+                          <th scope="col">Description</th>
+                          <th scope="col">Category</th>
                           <th scope="col">Edit</th>
                           <th scope="col">Delete</th>
                           </tr>
                       </thead>
                       <tbody>
                         @php $i = 1; @endphp
-                        @forelse ($users as $key =>$item)
+                        @forelse ($food as $key =>$item)
                           <tr>
                             <td>{{$i++}}</td>
-                            <td>{{$item['fname']}}</td>
-                            <td>{{$item['lname']}}</td>
-                            <td>{{$item['email']}}</td>
-                            <td>{{$item['user_role']}}</td>
-                            <td><a href="{{url('admin/users/edit-user/' .$key)}}" class="btn btn-sm btn-success">Edit</a></td>
-                            <td><a href="{{url('admin/users/delete-user/'.$key)}}" class="btn btn-sm btn-danger">Delete</a></td>
+                            <td>{{$item['dish_name']}}</td>
+                            <td>{{$item['desc']}}</td>
+                            <td>{{$item['category']}}</td>
+                            <td><a href="{{url('admin/food/edit-food/' .$key)}}" class="btn btn-sm btn-success">Edit</a></td>
+                            <td><a href="{{url('admin/food/delete-food/'.$key)}}" class="btn btn-sm btn-danger">Delete</a></td>
                           </tr>
                         @empty
                         <tr>
-                          <td colspan="7">No Records Found</td>
+                          <td colspan="7">No Food Found</td>
                         </tr>
                         @endforelse
                       </tbody>
                   </table>
                 </div>
+
+                <div class="justify-content-center">
+                    {{ $food->links('vendor.pagination.simple-pagination') }}
+                </div>
+
               </div>
             </div>
           </div>

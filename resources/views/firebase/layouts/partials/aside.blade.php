@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <!-- SidebarSearch Form -->
+      <!-- SidebarSearch Form
       <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
@@ -28,7 +28,7 @@
             </button>
           </div>
         </div>
-      </div>
+      </div>-->
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -113,15 +113,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('admin.food')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Food</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Events</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -132,7 +126,7 @@
               </li>
             </ul>
           </li>
-
+          
           <li class="nav-item menu">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-calendar-check-o"></i>

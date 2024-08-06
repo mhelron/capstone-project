@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Edit User</h1>
+            <h1 class="m-0">Add Food</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Edit User</li>
+              <li class="breadcrumb-item active">Add Food</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -20,42 +20,49 @@
     </div>
     <!-- /.content-header -->
 
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
         <div class="row d-flex justify-content-center">
           <div class="col-lg-9">
             <div class="d-flex justify-content-end mb-2">
-                <a href="{{route('admin.users')}}" class="btn btn-danger">Back</a>
+                <a href="{{route('admin.food')}}" class="btn btn-danger">Back</a>
             </div>
             <div class="card">
               <div class="card-body">
-                <form action="{{ url('admin/users/update-food/'.$key) }}" method="POST">
+                <form action="{{ route('admin.food.store') }}" method="POST">
                     @csrf
-                    @method('PUT')
                         <div class="form-group mb-3">
-                            <label>First Name</label>
-                            <input type="text" name="first_name" value="{{$editdata['fname']}}" class="form-control">
+                            <label>Category</label>
+                            <div class="d-flex align-items-center">
+                                <select name="category" id="category" class="form-control">
+                                    <option value="Main Dish">Main Dish</option>
+                                    <option value="Side Dish">Side Dish</option>
+                                    <option value="Dessert">Dessert</option> 
+                                    <option value="Drinks">Drinks</option>
+                                </select>
+                                <span class="ml-2"><i class="fas fa-chevron-down"></i></span>
+                            </div>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label>Last Name</label>
-                            <input type="text" name="last_name" value="{{$editdata['lname']}}" class="form-control">
+                            <label>Name</label>
+                            <input type="text" name="dish_name" class="form-control">
                         </div>
 
                         <div class="form-group mb-3">
-                            <label>E-mail</label>
-                            <input type="text" name="email" value="{{$editdata['email']}}" class="form-control">
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label>User Role</label>
-                            <select name="user_role" id="user_role" value="{{$editdata['user_role']}}" class="form-control">
-                                <option value="Admin">Admin</option>
-                                <option value="Owner">Owner</option>
-                                <option value="BookKeeper">Book Keeper</option> 
-                                <option value="Accounting">Accounting</option>
-                            </select>
+                            <label>Description</label>
+                            <input type="text" name="desc" class="form-control">
                         </div>
 
                         <div class="form-group mb-3">
