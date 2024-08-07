@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Firebase\DashboardController;
 use App\Http\Controllers\Firebase\FoodController;
+use App\Http\Controllers\Firebase\MenuController;
 use App\Http\Controllers\Firebase\UserController;
 use Illuminate\Support\Facades\Route;
 
